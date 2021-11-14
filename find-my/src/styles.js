@@ -4,6 +4,9 @@ import reset from "styled-reset";
 
 export const GlobalStyles=createGlobalStyle`
   ${reset}
+  input,button {
+    all:unset;
+  }
   *{
     box-sizing:border-box;
   }
