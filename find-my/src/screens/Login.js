@@ -56,10 +56,13 @@ const FormBtn=styled(InputBase)`
   background-color: #74b9ff;
   border-radius: 5px;
   margin-top:10px;
-
+  color:white;
+  font-weight:600;
+ 
 `;
 const SignUpBtn=styled.button`
-  
+  font-weight:600;
+  color:#74b9ff;
   width: 60%;
   padding:8px;
   border:2px solid #74b9ff;
@@ -67,7 +70,18 @@ const SignUpBtn=styled.button`
   margin-top:10px;
   text-align:center;
 
+
 `;
+const SLink=styled(Link)`
+  width:60%;
+  margin-top:10px;
+  text-align:end;
+  font-size:10px;
+`;
+
+const Span=styled.span`
+  margin-top:10px;
+`
 
 function Login(){
   return (
@@ -79,11 +93,12 @@ function Login(){
           <form>
           <Input type="text" placeholder="아이디를 입력해 주세요."/>
           <Input type="password" placeholder="비밀번호를 입력해 주세요."/>
+          <SLink to="#">아이디 또는 비밀번호 찾기</SLink>
           <FormBtn type="submit" value="로그인"/>
-
           <SignUpBtn>회원가입</SignUpBtn>
           </form>
-         
+          <Span>SNS 로그인</Span>    
+          
         </FormBox>
       </Wrapper>
     </AuthLayout>
