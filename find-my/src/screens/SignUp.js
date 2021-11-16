@@ -1,14 +1,12 @@
 import React from "react";
 import styled from "styled-components";
 import {Link} from "react-router-dom";
-import Google from "../assets/google.svg";
-import Naver from "../assets/naverpng.png";
-import Kakao from "../assets/kakao.svg";
 import AuthLayout from "../components/auth/AuthLayout";
-import {FormBox,Input,FormBtn} from "../components/auth/Form";
+import {FormBox,TextInput,FormBtn} from "../components/auth/Form";
 import {colors} from "../styles";
 import ServiceName from "../components/shared";
 import routes from '../routes';
+import {useForm} from "react-hook-form";
 
 const Links=styled.div`
   display:flex;
@@ -32,33 +30,30 @@ const IconBox=styled.div`
   }
 
 `;
-function Login(){
+function SignUp(){
+  const thisYear=new Date().getFullYear();
   return (
     <AuthLayout>
      
         <ServiceName>어딨지?</ServiceName>
         <FormBox>
-          <h2>로그인</h2>
+          <h2>회원가입</h2>
           <form>
-          <Input type="text" placeholder="아이디를 입력해 주세요."/>
-          <Input type="password" placeholder="비밀번호를 입력해 주세요."/>
-          <FormBtn type="submit" value="로그인"/>
+          <TextInput type="text" placeholder="아이디를 입력해 주세요."/>
+          <TextInput type="password" placeholder="비밀번호를 입력해 주세요."/>
+          <TextInput type="password" placeholder="비밀번호를 한번 더 입력주세요."/>
+          <TextInput type="text" placeholder="이름을 입력해 주세요."/>
+          <TextInput type="text" placeholder="사용할 닉네임을 입력해 주세요."/>
+          <TextInput type="text" placeholder="숫자만 입력해 주세요."/>
+          <select>
+            <option value="male">남자</option>
+            <option value="female">여자</option>
+          </select>
+         
+          <FormBtn type="submit" value="가입하기"/>
          
           </form>
-          <Links>
-            <Link to="#">아이디 찾기</Link>
-            <div></div>
-            <Link to="#">비밀번호 찾기</Link>
-            <div></div>
-            <Link to={routes.signUp}>회원가입</Link>
-          </Links>
-          <span>SNS 로그인</span> 
-          <IconBox>  
-          
-              <img src={Google}/>
-              <img src={Naver}/>
-              <img src={Kakao}/>
-          </IconBox>  
+         
         </FormBox>
       
     </AuthLayout>
@@ -67,4 +62,4 @@ function Login(){
 }
 
 
-export default Login;
+export default SignUp;

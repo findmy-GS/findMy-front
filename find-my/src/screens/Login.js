@@ -5,7 +5,7 @@ import Google from "../assets/google.svg";
 import Naver from "../assets/naverpng.png";
 import Kakao from "../assets/kakao.svg";
 import AuthLayout from "../components/auth/AuthLayout";
-import {FormBox,Input,FormBtn} from "../components/auth/Form";
+import {FormBox,TextInput,FormBtn} from "../components/auth/Form";
 import {colors} from "../styles";
 import ServiceName from "../components/shared";
 import routes from '../routes';
@@ -40,8 +40,8 @@ function Login(){
         <FormBox>
           <h2>로그인</h2>
           <form>
-          <Input type="text" placeholder="아이디를 입력해 주세요."/>
-          <Input type="password" placeholder="비밀번호를 입력해 주세요."/>
+          <TextInput type="text" placeholder="아이디를 입력해 주세요."/>
+          <TextInput type="password" placeholder="비밀번호를 입력해 주세요."/>
           <FormBtn type="submit" value="로그인"/>
          
           </form>

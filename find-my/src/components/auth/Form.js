@@ -38,9 +38,10 @@ export const InputBase=styled.input`
   transition: border-color 0.2s ease-in;
 
 `;
-export const Input=styled(InputBase)`
+export const TextInput=styled(InputBase)`
   
-  border-bottom:1px solid black;
+  border:1px solid black;
+  border-radius:3px;
   margin-top:20px;
 `;
 export const FormBtn=styled(InputBase)`
