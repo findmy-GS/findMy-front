@@ -42,14 +42,16 @@ export const TextInput=styled(InputBase)`
   
   border:1px solid black;
   border-radius:3px;
-  margin-top:20px;
+  margin-top:10px;
 `;
 export const FormBtn=styled(InputBase)`
+ 
   text-align: center;
   background-color:${colors.mainColor};
   border-radius: 5px;
   margin-top:20px;
   color:white;
   font-weight:600;
+  border:none;
  
 `;

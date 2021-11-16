@@ -6,8 +6,9 @@ export const colors={
 
 export const GlobalStyles=createGlobalStyle`
   ${reset}
-  input,button {
-    all:unset;
+  input:focus{
+    outline:none;
+    
   }
   *{
     box-sizing:border-box;
