@@ -16,7 +16,7 @@ export const logUserOut=()=>{
 };
 
 export const client=new ApolloClient({
-  uri:"",
+  uri:"http://13.209.7.118:4000/",
   cache:new InMemoryCache(),
 });
 
