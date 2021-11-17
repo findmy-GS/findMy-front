@@ -87,9 +87,9 @@ function Login(){
          
           </form>
           <Links>
-            <Link to="#">아이디 찾기</Link>
+            <Link to={routes.findId}>아이디 찾기</Link>
             <div></div>
-            <Link to="#">비밀번호 찾기</Link>
+            <Link to={routes.findPassword}>비밀번호 찾기</Link>
             <div></div>
             <Link to={routes.signUp}>회원가입</Link>
           </Links>

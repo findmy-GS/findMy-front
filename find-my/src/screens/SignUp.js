@@ -71,6 +71,7 @@ function SignUp(){
   };
   }*/
   const onSubmitValid=(data)=>{
+   
     console.log("lalalal");
     const {id,password,username,nickName,phoneNumber,gender,year}=getValues();
     //signUp({variables:{username,password}});
@@ -108,15 +109,15 @@ function SignUp(){
             required:"휴대폰 번호를 입력해주세요"
           })} name="phoneNumber"  hasError={Boolean(errors?.phoneNumber?.message)}type="text"onChange={clearSignUpError} placeholder="휴대폰 번호(숫자만)"/>
           <FormError message={errors?.phoneNumber?.message}/>
-        
-          <select {...register("gender", { required: true })}>
+          <Detail>
+          <select ref={register({ required: true })} name="gender">
             <option value="male">남자</option>
             <option value="female">여자</option>
           </select>
             <input ref={register({
             required:"태어난 연도를 입력해주세요."
             })}  name="year" hasError={Boolean(errors?.year?.message)} type="text" onChange={clearSignUpError} placeholder="태어난 연도 8자리" />
-         
+          </Detail>
          
           <FormError message={errors?.year?.message}/>
          

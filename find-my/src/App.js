@@ -8,7 +8,8 @@ import Home from "./screens/Home";
 import NotFound from "./screens/NotFound";
 import SignUp from "./screens/SignUp";
 import Login from "./screens/Login";
-
+import FindId from "./screens/FindId";
+import FindPassword from "./screens/FindPassword";
 
 function App(){
   const isLoggedIn=useReactiveVar(isLoggedInVar);
@@ -23,6 +24,16 @@ function App(){
         {!isLoggedIn? (
         <Route path={routes.signUp}>
           <SignUp />
+        </Route>)
+        :null}
+         {!isLoggedIn? (
+        <Route path={routes.findPassword}>
+          <FindPassword />
+        </Route>)
+        :null}
+         {!isLoggedIn? (
+        <Route path={routes.findId}>
+          <FindId />
         </Route>)
         :null}
          <Route>
