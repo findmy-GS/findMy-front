@@ -32,17 +32,17 @@ export function FormBox({children}){
 export const InputBase=styled.input`
   width: 60%;
   padding:10px;
-  &:focus{
-    border-color:${colors.mainColor};
-  }
+ 
   transition: border-color 0.2s ease-in;
 
 `;
 export const TextInput=styled(InputBase)`
-  
-  border:1px solid black;
   border-radius:3px;
   margin-top:10px;
+  border:1px solid ${(props)=>(props.hasError?"red":"black")};
+  &:focus{
+    border-color:${colors.mainColor};
+  }
 `;
 export const FormBtn=styled(InputBase)`
  
