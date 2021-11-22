@@ -27,6 +27,7 @@ const MapContainer=()=>{
 
 		};
    const map = new kakao.maps.Map(container, options);
+   
   },[]);
   return (
   <div id="myMap" style={{
