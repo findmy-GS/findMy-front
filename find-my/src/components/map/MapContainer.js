@@ -1,4 +1,5 @@
 import React,{useEffect} from "react";
+import {generateMarker} from "./Marker";
 const {kakao}=window;
 
 let lat;
@@ -13,12 +14,12 @@ const onGeoError=()=> {
  
 }
 
-
 const MapContainer=()=>{
   navigator.geolocation.getCurrentPosition( onGeoOk, onGeoError);
   console.log(lat,lng);
   //if(!coords) 나중에 처리 
   useEffect(()=>{
+   
     const container=document.getElementById("myMap");
     const options = {
 			center: new kakao.maps.LatLng(lat,lng),
@@ -27,6 +28,8 @@ const MapContainer=()=>{
 
 		};
    const map = new kakao.maps.Map(container, options);
+   generateMarker(map,lat,lng);
+   
    
   },[]);
   return (
@@ -34,5 +37,6 @@ const MapContainer=()=>{
     width:"500px",height:"500px"
   }}></div>);
 }
+
 
 export default MapContainer;

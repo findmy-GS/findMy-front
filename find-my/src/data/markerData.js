@@ -1,20 +1,22 @@
-
+const resolution=500;
 // 마커를 표시할 위치와 title 객체 배열입니다 
-export let positions = [
+let positions = [
   {
       title: '맥북', 
-      latlng: new kakao.maps.LatLng(33.450705, 126.570677)
+      latlng:{latOffset:(Math.random()*(-1)+Math.random())/resolution,lngOffset:(Math.random()*(-1)+Math.random())/resolution}
   },
   {
       title: '버즈', 
-      latlng: new kakao.maps.LatLng(33.450936, 126.569477)
+      latlng: {latOffset:(Math.random()*(-1)+Math.random())/resolution,lngOffset:(Math.random()*(-1)+Math.random())/resolution}
   },
   {
       title: '텀블러', 
-      latlng: new kakao.maps.LatLng(33.450879, 126.569940)
+      latlng: {latOffset:(Math.random()*(-1)+Math.random())/resolution,lngOffset:(Math.random()*(-1)+Math.random())/resolution}
   },
   {
       title: '안경',
-      latlng: new kakao.maps.LatLng(33.451393, 126.570738)
+      latlng: {latOffset:(Math.random()*(-1)+Math.random())/resolution,lngOffset:(Math.random()*(-1)+Math.random())/resolution}
   }
 ];
+
+export default positions;
