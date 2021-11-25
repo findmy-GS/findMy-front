@@ -1,5 +1,5 @@
 import React,{useEffect} from "react";
-import {generateMarker} from "./Marker";
+import {generateMarker,markerClusterer} from "./Marker";
 const {kakao}=window;
 
 let lat;
@@ -29,7 +29,7 @@ const MapContainer=()=>{
 		};
    const map = new kakao.maps.Map(container, options);
    generateMarker(map,lat,lng);
-   
+ 
    
   },[]);
   return (
