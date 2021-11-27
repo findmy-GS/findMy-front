@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import {colors} from "../../styles";
+import {colors,shadow} from "../../styles";
 const Container=styled.div`
   
   display:flex;
@@ -9,7 +9,7 @@ const Container=styled.div`
   background-color:white;
   padding:20px 0;
   border-radius:5px;
-  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  box-shadow: ${shadow};
   h2{
     font-weight:600;
     font-size:20px;

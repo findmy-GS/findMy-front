@@ -5,10 +5,11 @@ import AuthLayout from "../components/auth/AuthLayout";
 import {FormBox,TextInput,FormBtn} from "../components/auth/Form";
 import FormError from"../components/auth/FormError";
 import {colors} from "../styles";
-import ServiceName from "../components/shared";
+import {ServiceName} from "../components/shared";
 import routes from '../routes';
 import {useForm} from "react-hook-form";
 import { gql, useMutation } from '@apollo/client';
+import {useHistory} from "react-router-dom";
 
 const Links=styled.div`
   display:flex;
@@ -29,54 +30,42 @@ const Detail=styled.div`
  
 `;
 
-/*
-const CREATE_ACCOUNT_MUTATION = gql`
-  mutation createAccount(
-    $firstName: String!
-    $lastName: String
-    $username: String!
+
+const Sign_Up_MUTATION = gql`
+  mutation SignUp(
     $email: String!
     $password: String!
   ) {
-    createAccount(
-      firstName: $firstName
-      lastName: $lastName
-      username: $username
+    signUp(
       email: $email
       password: $password
-    ) {
-      ok
-      error
-    }
+    ) 
   }
 `;
 
-`;*/
+
 
 function SignUp(){
-
+  const history=useHistory();
   const {register,handleSubmit,errors,formState,getValues,setError,clearErrors}=useForm({
     mode:"OnChange",
   });
-  /*
+  
   const onCompleted = (data) => {
-    const { username, password } = getValues();
-    const {
-      createAccount: { ok, error },
-    } = data;
-    if (!ok) {
-      return;
-    }
-    history.push(routes.home,{message:"Account created. Please log in.",username,password});
+   if(data){
+    history.push(routes.home,{message:"Account created. Please log in."});
+   }
+  
   };
-  }*/
+  const [signUp,{loading}]=useMutation( Sign_Up_MUTATION,{
+    onCompleted,
+  });
   const onSubmitValid=(data)=>{
    
-    console.log("lalalal");
-    const {id,password,username,nickName,phoneNumber,gender,year}=getValues();
-    //signUp({variables:{username,password}});
    
-    console.log({id,password,username,nickName,phoneNumber,gender,year});
+    const {email,password,username,nickName,phoneNumber,gender,year}=getValues();
+    console.log(email,password);
+    signUp({variables:{email,password}});
   }
   const clearSignUpError=()=>clearErrors("result");
   return (
@@ -86,8 +75,8 @@ function SignUp(){
           <h2>회원가입</h2>
           <form onSubmit={handleSubmit(onSubmitValid)}>
           <TextInput ref={register({
-            required:"아이디를 입력하세요."
-          })} name="id" type="text" placeholder="아이디"  onChange={clearSignUpError} hasError={Boolean(errors?.id?.message)}/>
+            required:"이메일을 입력하세요."
+          })} name="email" type="text" placeholder="이메일"  onChange={clearSignUpError} hasError={Boolean(errors?.id?.message)}/>
           <FormError message={errors?.id?.message}/>
           <TextInput ref={register({
             required:"비밀번호를 입력해 주세요.",

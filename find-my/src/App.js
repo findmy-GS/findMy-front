@@ -1,5 +1,5 @@
-import {useReactiveVar} from "@apollo/client";
-import {isLoggedInVar} from './apollo';
+import {ApolloProvider, useReactiveVar} from "@apollo/client";
+import {isLoggedInVar,client} from './apollo';
 import React,{useState} from "react";
 import {HashRouter as Router,Route,Switch} from "react-router-dom";
 import routes from './routes';
@@ -14,7 +14,7 @@ import FindPassword from "./screens/FindPassword";
 function App(){
   const isLoggedIn=useReactiveVar(isLoggedInVar);
   return (
-    
+    <ApolloProvider client={client}>
     <Router>
       <GlobalStyles />
       <Switch>
@@ -41,6 +41,7 @@ function App(){
           </Route>
       </Switch>
     </Router>
+    </ApolloProvider>
   );
 }
 

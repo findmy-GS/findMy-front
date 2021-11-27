@@ -1,6 +1,9 @@
 import React,{useEffect} from "react";
 import {generateMarker,markerClusterer} from "./Marker";
+import {useReactiveVar} from "@apollo/client";
+import {userPosition} from '../../apollo';
 const {kakao}=window;
+
 
 let lat;
 let lng;
@@ -15,11 +18,14 @@ const onGeoError=()=> {
 }
 
 const MapContainer=()=>{
+  const userPos=useReactiveVar(userPosition);
   navigator.geolocation.getCurrentPosition( onGeoOk, onGeoError);
-  console.log(lat,lng);
   //if(!coords) 나중에 처리 
   useEffect(()=>{
-   
+    
+    userPos.lat=lat;
+    userPos.lng=lng;
+    console.log("pos",lat,lng,2);
     const container=document.getElementById("myMap");
     const options = {
 			center: new kakao.maps.LatLng(lat,lng),

@@ -1,9 +1,12 @@
 import markerPositions from "../../data/markerData";
 import markerStar from "../../assets/marker/markerStar.png";
+import {useReactiveVar} from "@apollo/client";
+import {userPosition} from '../../apollo';
 const {kakao}=window;
 
 let markers=[];
 export const generateMarker=(map,lat,lng)=>{
+ 
   for(let i=0;i<markerPositions.length;i++)
   {
     const imageSize=new kakao.maps.Size(24,35);

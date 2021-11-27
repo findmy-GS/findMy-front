@@ -7,11 +7,12 @@ import Kakao from "../assets/brandLogo/kakao.svg";
 import AuthLayout from "../components/auth/AuthLayout";
 import {FormBox,TextInput,FormBtn} from "../components/auth/Form";
 import {colors} from "../styles";
-import ServiceName from "../components/shared";
+import {ServiceName} from "../components/shared";
 import routes from '../routes';
 import {useForm} from "react-hook-form";
 import FormError from "../components/auth/FormError";
-
+import { gql, useMutation } from '@apollo/client';
+import {logUserIn} from "../apollo";
 const Links=styled.div`
   display:flex;
   font-size:12px;
@@ -34,42 +35,36 @@ const IconBox=styled.div`
   }
 
 `;
-/*
-const Login_MUTATION=gql`
-  mutation login($email:String!,$password:String!){
-    login(email:$email,password:$password){
-      ok
-      token
-      error
-    }
-  }
 
+const Login_MUTATION=gql`
+  mutation Login($email:String!,$password:String!){
+    login(email:$email,password:$password)
+  }
 `;
-*/
+
 
 function Login(){
   const {register,handleSubmit,errors,formState,getValues,setError,clearErrors}=useForm({
     mode:"onChange",
   });
- /* const onCompleted=(data)=>{
-    const {login:{ok,error,token}}=data;
-    if(!ok){
-      return setError("result",{message:error});
-    }
-    if(token){
+ const onCompleted=(data)=>{
+   if(data.login!=="login failed"){
+      const token=data.login;
+      console.log(token);
      logUserIn(token);
-    }
-  }
-  const [login,{loading}]=useMutation(LOGIN_MUTATION,{
+   };
+
+ }
+  const [login,{loading}]=useMutation( Login_MUTATION,{
     onCompleted,
   });
  
- */
+ 
   const onSubmitValid=(data)=>{
-    const {id,password}=getValues();
-    //login({variables:{id,password}});
+    const {email,password}=getValues();
+    login({variables:{email,password}});
     console.log("lalalal");
-    console.log({id,password});
+    console.log({email,password});
   }
   const clearLoginError=()=>clearErrors("result");
   return (
@@ -79,7 +74,7 @@ function Login(){
         <FormBox>
           <h2>로그인</h2>
           <form onSubmit={handleSubmit(onSubmitValid)}>
-          <TextInput ref={register({required:"아이디를 입력하세요."})} name="id"  hasError={Boolean(errors?.id?.message)} type="text" placeholder="아이디"/>
+          <TextInput ref={register({required:"이메일을 입력하세요."})} name="email"  hasError={Boolean(errors?.id?.message)} type="text" placeholder="아이디"/>
           <FormError message={errors?.id?.message}/>
           <TextInput ref={register({required:"비밀번호를 입력하세요."})} name="password"  hasError={Boolean(errors?.password?.message)} type="password" placeholder="비밀번호"/>
           <FormError message={errors?.password?.message}/>
