@@ -10,6 +10,9 @@ import SignUp from "./screens/SignUp";
 import Login from "./screens/Login";
 import FindId from "./screens/FindId";
 import FindPassword from "./screens/FindPassword";
+import Layout from "./components/Layout";
+
+
 
 function App(){
   const isLoggedIn=useReactiveVar(isLoggedInVar);
@@ -19,7 +22,7 @@ function App(){
       <GlobalStyles />
       <Switch>
         <Route path={routes.home} exact>
-          {isLoggedIn? <Home/> : <Login/>}
+           {isLoggedIn?(<Layout><Home/></Layout>):(<Login/>)}
         </Route>
         {!isLoggedIn? (
         <Route path={routes.signUp}>

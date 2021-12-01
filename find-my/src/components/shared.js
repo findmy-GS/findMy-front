@@ -3,8 +3,8 @@ import {colors} from "../styles";
 export const ServiceName=styled.h1`
  text-align: center;
  font-family: 'Hi Melody', cursive;
- font-size:60px;
- margin-bottom:20px;
+ font-size:${(props)=>props.pxSize};
+ white-space : nowrap; 
 color:${colors.mainColor};
 `;
 
@@ -20,11 +20,6 @@ export const SelectButton=styled.select`
     -webkit-appearance: none;  /* 네이티브 외형 감추기 */
     -moz-appearance: none;
     appearance: none;
-}
-
-
-
-
 
 
 `;

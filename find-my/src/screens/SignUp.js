@@ -70,7 +70,7 @@ function SignUp(){
   const clearSignUpError=()=>clearErrors("result");
   return (
     <AuthLayout>
-        <ServiceName>어딨지?</ServiceName>
+        <ServiceName pxSize="70px">어딨지?</ServiceName>
         <FormBox>
           <h2>회원가입</h2>
           <form onSubmit={handleSubmit(onSubmitValid)}>

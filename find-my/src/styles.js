@@ -25,7 +25,7 @@ export const GlobalStyles=createGlobalStyle`
     text-decoration:none;
   }
   body{
-    background-color:whitesmoke;
+    background-color:#F9FAFB;
     font-size:15px;
     font-family:'Open Sans', sans-serif;
   }

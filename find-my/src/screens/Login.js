@@ -70,7 +70,7 @@ function Login(){
   return (
     <AuthLayout>
      
-        <ServiceName>어딨지?</ServiceName>
+        <ServiceName pxSize="70px">어딨지?</ServiceName>
         <FormBox>
           <h2>로그인</h2>
           <form onSubmit={handleSubmit(onSubmitValid)}>
