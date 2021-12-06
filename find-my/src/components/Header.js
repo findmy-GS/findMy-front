@@ -57,14 +57,17 @@ const SearchForm=styled.form`
   border-radius:50px;
   box-shadow:${(props)=>(props.isClicked ?  "rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;" :"none")};
   border: 1px solid ${(props)=>(props.isClicked ?"rgb(220,220,220)":"inherit")};
-  
+
   button{
     color:${colors.mainColor};
     font-size:20px;
+
   }
+  
   input{
     all: unset;
     margin-left:10px;
+
     
   }
 `;
