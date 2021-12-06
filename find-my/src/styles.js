@@ -2,6 +2,7 @@ import { createGlobalStyle } from 'styled-components';
 import reset from "styled-reset";
 export const colors={
   mainColor:"#74b9ff",
+  bodyColor:"#F6F6F6"
 };
 export const shadow=" rgba(100, 100, 111, 0.2) 0px 7px 29px 0px";
 export const GlobalStyles=createGlobalStyle`

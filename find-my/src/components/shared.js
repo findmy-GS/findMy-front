@@ -1,12 +1,17 @@
 import styled from 'styled-components';
+import {Link} from "react-router-dom";
 import {colors} from "../styles";
-export const ServiceName=styled.h1`
+
+
+export const ServiceName=styled(Link)`
  text-align: center;
  font-family: 'Hi Melody', cursive;
  font-size:${(props)=>props.pxSize};
  white-space : nowrap; 
 color:${colors.mainColor};
 `;
+
+
 
 export const SelectButton=styled.select`
     width: 150px; /* 원하는 너비설정 */
@@ -20,8 +25,6 @@ export const SelectButton=styled.select`
     -webkit-appearance: none;  /* 네이티브 외형 감추기 */
     -moz-appearance: none;
     appearance: none;
-
-
 `;
 
 

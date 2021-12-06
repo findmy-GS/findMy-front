@@ -1,9 +1,10 @@
 import styled from "styled-components";
-import React from "react";
+import React,{useState,useRef} from "react";
 import {ServiceName} from "./shared";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBell,faSearch } from '@fortawesome/free-solid-svg-icons'
 import {colors} from "../styles";
+import useDetectOutsideClick from "../hooks/useDetectOutsideClick";
 const SHeader=styled.header`
   background-color: white;
   width:100%;
@@ -11,10 +12,10 @@ const SHeader=styled.header`
   display:flex;
   align-items:center;
   justify-content: center;
-`
+`;
 const Wrapper=styled.div`
   max-width:1080px;
-  padding:15px;
+  padding:10px;
   width:100%;
   display:flex;
   align-items:center;
@@ -39,19 +40,24 @@ const ColumnLeft=styled(Column)`
   
 `;
 const ColumnRight=styled(Column)`
- div,form{
+ div{
    padding:10px;
  }
  form{
    margin-right:10px;
+   padding:5px;
  }
 
 `;
 const SearchForm=styled.form`
+
   display:flex;
   align-items:center;
-  background-color:#F6F6F6;
+  background-color:${colors.bodyColor};
   border-radius:50px;
+  box-shadow:${(props)=>(props.isClicked ?  "rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;" :"none")};
+  border: 1px solid ${(props)=>(props.isClicked ?"rgb(220,220,220)":"inherit")};
+  
   button{
     color:${colors.mainColor};
     font-size:20px;
@@ -59,9 +65,7 @@ const SearchForm=styled.form`
   input{
     all: unset;
     margin-left:10px;
-    &:hover{
-      background-color: black;
-    }
+    
   }
 `;
 /*  margin-left:40px; */
@@ -74,21 +78,23 @@ const Notice=styled.div`
 `;
 
 function Header(){
+  const formRef=useRef();
 
+  const [isClicked,setClickState]=useState(false);
+  useDetectOutsideClick(formRef,setClickState);
+  console.log(isClicked);
    return (
    <SHeader>
      <Wrapper>
-      
-   
-     <ServiceName pxSize="35px">어딨지?</ServiceName>
+     <ServiceName to="/" pxSize="35px">어딨지?</ServiceName>
       <Navbar>
       <ColumnLeft>
         <div>분실물</div>
         <div>유실물</div>
       </ColumnLeft>
       <ColumnRight>
-         <SearchForm>
-          <input type="search" placeholder="분실물 검색" name="search"/>
+        <SearchForm ref={formRef} isClicked={isClicked} >
+          <input onClick={()=>setClickState(true)}  type="search" placeholder="분실물 검색" name="search"/>
           <button><FontAwesomeIcon icon={faSearch} /></button>
         </SearchForm>
         <Notice>
@@ -100,14 +106,6 @@ function Header(){
     </Wrapper>
    </SHeader>
    );
-
 }
-
-
 export default Header;
 
-/*  
- 
-     
-
-*/

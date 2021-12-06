@@ -1,7 +1,14 @@
-import React,{useEffect} from "react";
-import {generateMarker,markerClusterer} from "./Marker";
+import React,{useEffect, useRef} from "react";
+import styled from "styled-components";
+import {generateMarker} from "./Marker";
 import {useReactiveVar} from "@apollo/client";
 import {userPosition} from '../../apollo';
+const KaKaoMap=styled.div`
+  width:100%;
+  height:100%;
+
+ 
+`;
 const {kakao}=window;
 
 
@@ -17,32 +24,32 @@ const onGeoError=()=> {
  
 }
 
-const MapContainer=()=>{
+const Map=()=>{
   const userPos=useReactiveVar(userPosition);
   navigator.geolocation.getCurrentPosition( onGeoOk, onGeoError);
   //if(!coords) 나중에 처리 
+  const myMap=useRef(null);
   useEffect(()=>{
     
     userPos.lat=lat;
     userPos.lng=lng;
     console.log("pos",lat,lng,2);
-    const container=document.getElementById("myMap");
+   
     const options = {
 			center: new kakao.maps.LatLng(lat,lng),
 			level: 3 //지도의 확대 레벨,
-     
+      
 
 		};
-   const map = new kakao.maps.Map(container, options);
+   const map = new kakao.maps.Map(myMap.current, options);
    generateMarker(map,lat,lng);
+   return () => {};
  
    
   },[]);
   return (
-  <div id="myMap" style={{
-    width:"500px",height:"500px"
-  }}></div>);
+  <KaKaoMap ref={myMap}></KaKaoMap>);
 }
 
 
-export default MapContainer;
+export default Map;

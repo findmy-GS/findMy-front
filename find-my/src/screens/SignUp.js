@@ -4,6 +4,7 @@ import {Link} from "react-router-dom";
 import AuthLayout from "../components/auth/AuthLayout";
 import {FormBox,TextInput,FormBtn} from "../components/auth/Form";
 import FormError from"../components/auth/FormError";
+import ServiceNameWrapper from"../components/auth/ServiceNameWrapper";
 import {colors} from "../styles";
 import {ServiceName} from "../components/shared";
 import routes from '../routes';
@@ -70,7 +71,9 @@ function SignUp(){
   const clearSignUpError=()=>clearErrors("result");
   return (
     <AuthLayout>
-        <ServiceName pxSize="70px">어딨지?</ServiceName>
+         <ServiceNameWrapper>
+        <ServiceName to={routes.home} pxSize="70px">어딨지?</ServiceName>
+        </ServiceNameWrapper>
         <FormBox>
           <h2>회원가입</h2>
           <form onSubmit={handleSubmit(onSubmitValid)}>

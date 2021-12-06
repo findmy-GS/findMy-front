@@ -5,6 +5,7 @@ import Google from "../assets/brandLogo/google.svg";
 import Naver from "../assets/brandLogo/naverpng.png";
 import Kakao from "../assets/brandLogo/kakao.svg";
 import AuthLayout from "../components/auth/AuthLayout";
+import ServiceNameWrapper from"../components/auth/ServiceNameWrapper";
 import {FormBox,TextInput,FormBtn} from "../components/auth/Form";
 import {colors} from "../styles";
 import {ServiceName} from "../components/shared";
@@ -69,8 +70,9 @@ function Login(){
   const clearLoginError=()=>clearErrors("result");
   return (
     <AuthLayout>
-     
-        <ServiceName pxSize="70px">어딨지?</ServiceName>
+    <ServiceNameWrapper>
+     <ServiceName to={routes.home} pxSize="70px">어딨지?</ServiceName>
+     </ServiceNameWrapper>
         <FormBox>
           <h2>로그인</h2>
           <form onSubmit={handleSubmit(onSubmitValid)}>
