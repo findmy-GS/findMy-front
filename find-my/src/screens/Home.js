@@ -48,11 +48,12 @@ const MarekerFilter=styled.div`
   &:hover,
   &:focus {
     color: black;
+    background-color:#7579E7 ;
     outline: 0;
   }
   
-  border-color: yellow;
-  color: black;
+  border-color:#55E6A9;
+  color: #55E6A9;
   background: {
     image: linear-gradient(45deg,yellow 50%, transparent 50%);
     position: 100%;
@@ -63,6 +64,7 @@ const MarekerFilter=styled.div`
   &:hover {
     background-position: 0;
   }
+  
 
 }
 

@@ -36,10 +36,21 @@ const Sign_Up_MUTATION = gql`
   mutation SignUp(
     $email: String!
     $password: String!
+    $name:String!
+    $nickname:String!
+    $birth:Int!
+    $gender:String!
+    $phoneNumber:String!
   ) {
     signUp(
       email: $email
       password: $password
+      name:$name
+      nickname:$nickname
+      birth:$birth
+      gender:$gender
+      phoneNumber:$phoneNumber
+
     ) 
   }
 `;
@@ -64,9 +75,9 @@ function SignUp(){
   const onSubmitValid=(data)=>{
    
    
-    const {email,password,username,nickName,phoneNumber,gender,year}=getValues();
-    console.log(email,password);
-    signUp({variables:{email,password}});
+    const {email,password,name,nickname,birth,gender,phoneNumber}=getValues();
+   
+    signUp({variables:{email,password,name,nickname,birth:parseInt(birth),gender,phoneNumber}});
   }
   const clearSignUpError=()=>clearErrors("result");
   return (
@@ -80,7 +91,7 @@ function SignUp(){
           <TextInput ref={register({
             required:"이메일을 입력하세요."
           })} name="email" type="text" placeholder="이메일"  onChange={clearSignUpError} hasError={Boolean(errors?.id?.message)}/>
-          <FormError message={errors?.id?.message}/>
+          <FormError message={errors?.email?.message}/>
           <TextInput ref={register({
             required:"비밀번호를 입력해 주세요.",
             minLength:{
@@ -91,12 +102,12 @@ function SignUp(){
           <FormError message={errors?.password?.message}/>
           <TextInput ref={register({
             required:"이름을 입력해주세요."
-          })} name="username"  hasError={Boolean(errors?.username?.message)} onChange={clearSignUpError} type="text" placeholder="이름"/>
-           <FormError message={errors?.username?.message}/>
+          })} name="name"  hasError={Boolean(errors?.name?.message)} onChange={clearSignUpError} type="text" placeholder="이름"/>
+           <FormError message={errors?.name?.message}/>
           <TextInput ref={register({
             required:"닉네임을 입력해주세요."
-          })} name="nickName"  hasError={Boolean(errors?.nickName?.message)} onChange={clearSignUpError} type="text" placeholder="닉네임"/>
-          <FormError message={errors?.nickName?.message}/>
+          })} name="nickname"  hasError={Boolean(errors?.nickName?.message)} onChange={clearSignUpError} type="text" placeholder="닉네임"/>
+          <FormError message={errors?.nickname?.message}/>
           <TextInput ref={register({
             required:"휴대폰 번호를 입력해주세요"
           })} name="phoneNumber"  hasError={Boolean(errors?.phoneNumber?.message)}type="text"onChange={clearSignUpError} placeholder="휴대폰 번호(숫자만)"/>
@@ -108,7 +119,7 @@ function SignUp(){
           </select>
             <input ref={register({
             required:"태어난 연도를 입력해주세요."
-            })}  name="year" hasError={Boolean(errors?.year?.message)} type="text" onChange={clearSignUpError} placeholder="태어난 연도 8자리" />
+            })}  name="birth" hasError={Boolean(errors?.birth?.message)} type="text" onChange={clearSignUpError} placeholder="태어난 연도 8자리" />
           </Detail>
          
           <FormError message={errors?.year?.message}/>
